@@ -33,4 +33,16 @@ router.post('/register', function(req, res){
     }
   })
 })
+
+router.post('/login', function(req, res) {
+    const {username, password} = req.body
+    UserModel.findOne({username, password:md5(password)}, function(err, user){
+        if (user){
+            res.cookie("userid", user._id, {maxAge:1000*60*60*24})
+            res.send({code:0, data:user})
+        } else {
+            res.send({code:1, msg:"username or password is wrong"})
+        }
+    })
+})
 module.exports = router;
