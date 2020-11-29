@@ -30,5 +30,34 @@ function testSave(){
         console.log('save ', error, user)
     })
 }
-
 testSave()
+
+function testFind(){
+
+    UserModel.find({_id:'5fc3c5dc567608f172f8d047'}, function(error, users){
+        console.log(users)
+    })
+
+    UserModel.findOne({_id:'5fc3c5dc567608f172f8d047'}, function(error, user){
+        console.log(user)
+    })
+}
+
+testFind()
+
+function testUpdate() {
+    UserModel.findByIdAndUpdate({_id:'5fc3c5dc567608f172f8d047'}, {username:'Jing'}, function(error, doc){
+        console.log('fincbyidandupdate', error, doc)
+    })
+}
+
+testUpdate()
+
+function testDelete(){
+
+    UserModel.remove({_id:'5fc3c5dc567608f172f8d047'}, function(error, doc) {
+        console.log('delete', error, doc)
+    })
+}
+
+testDelete()
